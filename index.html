@@ -95,6 +95,10 @@ section{position:relative}
 .col:hover svg{transform:translateX(-50%) translateY(-10px) scale(1.06)}
 .col small{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-l)}
 .col b{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.05;margin-top:6px;position:relative}
+.col img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.85);transition:transform 1.1s var(--e-out)}
+.col:hover img{transform:scale(1.07)}
+.col.has-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(11,11,11,.88) 0%,rgba(11,11,11,.25) 45%,transparent 70%)}
+.col small,.col b{z-index:2}.col::before{z-index:2}
 @media(max-width:1000px){.cols{grid-template-columns:repeat(2,1fr)}.col:last-child{grid-column:1/-1;aspect-ratio:16/8}}
 
 /* curadoria */
@@ -345,8 +349,13 @@ function renderGrid(animar) {
     </button>`).join('') : '<p class="empty">Nenhum perfume encontrado. Tente outra busca ou chame a Haya.</p>';
   if (animar && !reduce && window.gsap) gsap.from('#grid .card', { y: 36, opacity: 0, duration: .8, stagger: .06, ease: 'power3.out', clearProps: 'all' });
 }
+/* Foto de cada coleção (sem foto = frasco desenhado). Troque aqui quando chegarem fotos novas. */
+const COL_FOTOS = { 'Femininos': 'img/perfumes/p2.webp', 'Unissex': 'img/perfumes/p5.webp' };
 function renderCols() {
-  $('#cols').innerHTML = GROUPS.map((g, i) => `<button class="col" data-g="${esc(g)}" data-reveal>${bottle(i * 2 + 1)}<small>Coleção</small><b>${esc(g)}</b></button>`).join('');
+  $('#cols').innerHTML = GROUPS.map((g, i) => {
+    const f = fotoSegura(COL_FOTOS[g]);
+    return `<button class="col${f ? ' has-ph' : ''}" data-g="${esc(g)}" data-reveal>${f ? `<img src="${esc(f)}" alt="" loading="lazy" decoding="async">` : bottle(i * 2 + 1)}<small>Coleção</small><b>${esc(g)}</b></button>`;
+  }).join('');
 }
 function abrir(id) {
   const p = items.find(x => String(x.id) === id); if (!p) return;
