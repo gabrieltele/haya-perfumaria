@@ -120,7 +120,7 @@ section{position:relative}
 .card .ph{aspect-ratio:4/5;background:var(--cream);border:1px solid var(--sand);display:grid;place-items:center;position:relative;overflow:hidden}
 .card .ph::before{content:"";position:absolute;inset:7px;border:1px solid rgba(184,134,47,.4);z-index:1;pointer-events:none}
 .card .ph img,.card .ph svg{width:62%;transition:transform .8s var(--e-out)}
-.card .ph img{width:100%;height:100%;object-fit:contain;padding:14px}
+.card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .card:hover .ph svg,.card:hover .ph img{transform:scale(1.07) translateY(-4px)}
 .tag{position:absolute;top:14px;left:14px;z-index:2;background:var(--ink);color:var(--gold-l);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;padding:5px 9px}
 .card small{margin-top:14px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500}
@@ -134,7 +134,7 @@ dialog{border:0;padding:0;background:transparent;max-width:none;max-height:none;
 dialog::backdrop{background:rgba(11,11,11,.78);backdrop-filter:blur(4px)}
 .dlg{position:absolute;inset:auto 0 0 0;max-height:94vh;overflow:auto;background:var(--paper);display:grid;grid-template-columns:1fr 1fr;width:min(1060px,100vw);margin:auto;inset:0;height:fit-content;border:1px solid var(--gold)}
 .dlg .pic{background:var(--cream);display:grid;place-items:center;padding:34px;min-height:340px}
-.dlg .pic svg{width:56%}.dlg .pic img{max-height:70vh;object-fit:contain}
+.dlg .pic svg{width:56%}.dlg .pic img{max-height:70vh;width:100%;object-fit:contain}
 .dlg .info{padding:clamp(24px,4vw,48px)}
 .dlg h3{font-size:clamp(2rem,4vw,3.1rem);margin:8px 0 12px}
 .dlg .pr{font-family:var(--serif);font-size:2rem;margin:14px 0}
@@ -269,12 +269,14 @@ const INSTAGRAM = 'https://www.instagram.com/hayaperfumaria/';
 
 /* Lista de exemplo (usada enquanto o Supabase não estiver ligado). Troque pelos perfumes reais no painel. */
 const PRODUCTS = [
-  { id: 'ex1', nome: 'Exemplo Floral Gourmand', marca: 'Marca de exemplo', categoria: 'Femininos', tamanho: '80 ml', destaque: true, descricao: 'Perfume de exemplo. Cadastre os perfumes reais pelo painel.', notas_topo: 'Pera, bergamota', notas_coracao: 'Jasmim, flor de laranjeira', notas_fundo: 'Baunilha, chocolate' },
-  { id: 'ex2', nome: 'Exemplo Amadeirado', marca: 'Marca de exemplo', categoria: 'Masculinos', tamanho: '100 ml', destaque: true, descricao: 'Perfume de exemplo.', notas_topo: 'Cardamomo, limão', notas_coracao: 'Lavanda, cedro', notas_fundo: 'Âmbar, patchouli' },
-  { id: 'ex3', nome: 'Exemplo Oud & Âmbar', marca: 'Marca de exemplo', categoria: 'Árabes', tamanho: '100 ml', destaque: true, descricao: 'Perfume de exemplo da linha árabe.', notas_topo: 'Açafrão', notas_coracao: 'Rosa, oud', notas_fundo: 'Âmbar, almíscar' },
-  { id: 'ex4', nome: 'Exemplo Fresh', marca: 'Marca de exemplo', categoria: 'Unissex', tamanho: '100 ml', descricao: 'Perfume de exemplo.', notas_topo: 'Cítricos', notas_coracao: 'Chá verde', notas_fundo: 'Almíscar branco' },
-  { id: 'ex5', nome: 'Exemplo Creme Hidratante', marca: 'Marca de exemplo', categoria: 'Cosméticos', tamanho: '200 ml', descricao: 'Cosmético de exemplo.' },
-  { id: 'ex6', nome: 'Exemplo Doce Intenso', marca: 'Marca de exemplo', categoria: 'Femininos', tamanho: '50 ml', descricao: 'Perfume de exemplo.', notas_topo: 'Morango', notas_coracao: 'Rosa', notas_fundo: 'Baunilha' },
+  { id: 'ex1', nome: 'Nº5 Eau de Parfum', marca: 'Chanel', categoria: 'Femininos', tamanho: '100 ml', destaque: true, foto: 'img/perfumes/p1.webp', descricao: 'Exemplo: o floral aldeídico mais famoso do mundo. Confirme o estoque com a Haya.', notas_topo: 'Aldeídos, néroli, ylang-ylang', notas_coracao: 'Rosa, jasmim', notas_fundo: 'Sândalo, baunilha, vetiver' },
+  { id: 'ex2', nome: 'Coco Noir', marca: 'Chanel', categoria: 'Femininos', tamanho: '100 ml', destaque: true, foto: 'img/perfumes/p2.webp', descricao: 'Exemplo: oriental elegante e noturno.', notas_topo: 'Toranja, bergamota', notas_coracao: 'Rosa, jasmim, gerânio', notas_fundo: 'Patchouli, sândalo, fava tonka' },
+  { id: 'ex3', nome: 'Lince', marca: 'Tiziana Terenzi', categoria: 'Unissex', tamanho: '100 ml', destaque: true, foto: 'img/perfumes/p5.webp', descricao: 'Exemplo: extrato de perfumaria nicho italiana.', notas_topo: 'Notas verdes', notas_coracao: 'Flores brancas', notas_fundo: 'Almíscar, madeiras' },
+  { id: 'ex4', nome: 'Coco Mademoiselle', marca: 'Chanel', categoria: 'Femininos', tamanho: '100 ml', foto: 'img/perfumes/p4.webp', descricao: 'Exemplo: chipre fresco e moderno.', notas_topo: 'Laranja, bergamota', notas_coracao: 'Rosa, jasmim', notas_fundo: 'Patchouli, vetiver, almíscar' },
+  { id: 'ex5', nome: 'Exemplo Verde Aromático', marca: 'Perfumaria nicho', categoria: 'Unissex', tamanho: '100 ml', foto: 'img/perfumes/p3.webp', descricao: 'Perfume de exemplo.', notas_topo: 'Folhas verdes, limão', notas_coracao: 'Chá verde, figo', notas_fundo: 'Musgo, cedro' },
+  { id: 'ex6', nome: 'Exemplo Amadeirado', marca: 'Marca de exemplo', categoria: 'Masculinos', tamanho: '100 ml', descricao: 'Perfume de exemplo.', notas_topo: 'Cardamomo, limão', notas_coracao: 'Lavanda, cedro', notas_fundo: 'Âmbar, patchouli' },
+  { id: 'ex7', nome: 'Exemplo Oud & Âmbar', marca: 'Marca de exemplo', categoria: 'Árabes', tamanho: '100 ml', descricao: 'Perfume de exemplo da linha árabe.', notas_topo: 'Açafrão', notas_coracao: 'Rosa, oud', notas_fundo: 'Âmbar, almíscar' },
+  { id: 'ex8', nome: 'Exemplo Creme Hidratante', marca: 'Marca de exemplo', categoria: 'Cosméticos', tamanho: '200 ml', descricao: 'Cosmético de exemplo.' },
 ];
 
 /* Frasco desenhado em SVG (quando o perfume não tem foto) */
