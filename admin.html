@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR" translate="no" class="notranslate">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="google" content="notranslate">
+<title>Painel — Haya Perfumaria</title>
+<link rel="icon" href="img/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#B8862F;--gold-l:#D9B365;--ink:#0B0B0B;--cream:#F3EBDB;--paper:#FAF5EA;--sand:#E6D8BD;--wine:#4A1512;--ok:#2F6B3A;--serif:'Cormorant Garamond',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.hidden{display:none!important}
+h1,h2{font-family:var(--serif);font-weight:500}
+.btn{border:1px solid var(--ink);background:var(--ink);color:var(--cream);padding:11px 18px;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.btn.line{background:transparent;color:var(--ink)}
+.btn.danger{background:var(--wine);border-color:var(--wine)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+label{display:flex;flex-direction:column;gap:6px;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:#5a4a33}
+input,select,textarea{border:1px solid var(--sand);background:#fff;padding:12px;font-size:1rem;letter-spacing:0;text-transform:none;color:var(--ink)}
+textarea{min-height:90px;resize:vertical}
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;background:var(--ink);padding:20px}
+.login form{background:var(--paper);width:min(400px,100%);padding:40px 32px;display:grid;gap:18px;border:1px solid var(--gold);text-align:center}
+.login img{width:72px;border-radius:50%;margin:0 auto;border:1px solid var(--gold)}
+.err{color:var(--wine);font-size:.9rem;min-height:1.2em}
+/* app */
+header{background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:space-between;padding:14px 4vw;gap:12px;position:sticky;top:0;z-index:5}
+header .b{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:1.4rem;letter-spacing:.2em}
+header img{width:38px;border-radius:50%;border:1px solid var(--gold)}
+header .r{display:flex;gap:10px;align-items:center}
+header .btn.line{color:var(--cream);border-color:var(--gold)}
+main{width:min(1100px,94vw);margin:28px auto 80px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.stats div{background:#fff;border:1px solid var(--sand);padding:16px}
+.stats b{font-family:var(--serif);font-size:2.2rem;display:block;line-height:1}
+.stats small{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;align-items:center}
+.bar input{flex:1 1 220px}
+.list{display:grid;gap:10px}
+.item{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--sand);padding:10px}
+.item.off{opacity:.6}
+.item .th{width:64px;height:64px;background:var(--cream);display:grid;place-items:center;overflow:hidden;font-family:var(--serif);color:var(--gold);font-size:1.6rem}
+.item .th img{width:100%;height:100%;object-fit:contain}
+.item h3{font-family:var(--serif);font-size:1.25rem;font-weight:500}
+.item p{font-size:.84rem;color:#6b5a40}
+.chip{display:inline-block;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;padding:3px 7px;margin-right:4px;border:1px solid var(--gold);color:var(--gold)}
+.chip.no{border-color:var(--wine);color:var(--wine)}
+.acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.acts button{border:1px solid var(--sand);background:var(--paper);padding:8px 10px;font-size:.72rem;min-width:40px}
+.acts button:hover{border-color:var(--ink)}
+@media(max-width:700px){.item{grid-template-columns:52px 1fr}.item .th{width:52px;height:52px}.acts{grid-column:1/-1;justify-content:stretch}.acts button{flex:1;padding:12px 6px}.stats b{font-size:1.7rem}}
+dialog{border:1px solid var(--gold);padding:0;width:min(680px,96vw);max-height:94vh;background:var(--paper)}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+dialog form{padding:26px;display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+.check{flex-direction:row;align-items:center;gap:8px}
+.check input{width:20px;height:20px}
+.prev{width:120px;height:120px;background:var(--cream);display:grid;place-items:center;overflow:hidden}
+.prev img{width:100%;height:100%;object-fit:contain}
+.end{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--cream);padding:12px 20px;border:1px solid var(--gold);z-index:20;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+.empty{padding:40px;text-align:center;color:#6b5a40}
+</style>
+</head>
+<body>
+<section class="login" id="login">
+  <form id="loginForm" autocomplete="on">
+    <img src="img/logo.jpg" alt="Haya">
+    <h1>Painel Haya</h1>
+    <label>E-mail<input type="email" id="email" required autocomplete="username" maxlength="120"></label>
+    <label>Senha<input type="password" id="senha" required autocomplete="current-password" maxlength="128"></label>
+    <button class="btn gold" id="entrar">Entrar</button>
+    <p class="err" id="loginErr" role="alert"></p>
+  </form>
+</section>
+
+<div id="app" class="hidden">
+  <header><div class="b"><img src="img/logo.jpg" alt="">HAYA</div>
+    <div class="r"><a class="btn line" href="/" target="_blank" rel="noopener">Ver site</a><button class="btn line" id="sair">Sair</button></div></header>
+  <main>
+    <div class="stats"><div><b id="sVenda">0</b><small>À venda</small></div><div><b id="sEsg">0</b><small>Esgotados</small></div><div><b id="sDest">0</b><small>Em destaque</small></div></div>
+    <div class="bar">
+      <input type="search" id="q" placeholder="Buscar perfume…" maxlength="60" aria-label="Buscar perfume">
+      <select id="fCat" aria-label="Filtrar por coleção"><option value="">Todas as coleções</option></select>
+      <button class="btn gold" id="novo">+ Cadastrar perfume</button>
+    </div>
+    <div class="list" id="list"></div>
+  </main>
+</div>
+
+<dialog id="ed">
+  <form id="edForm" method="dialog">
+    <h2 id="edTitulo">Novo perfume</h2>
+    <div class="two"><label>Nome *<input id="fNome" required maxlength="120"></label><label>Marca<input id="fMarca" maxlength="80"></label></div>
+    <div class="two"><label>Coleção<select id="fCategoria"></select></label><label>Tamanho<input id="fTam" maxlength="30" placeholder="ex.: 100 ml"></label></div>
+    <label>Preço (R$) — vazio mostra "Preço no WhatsApp"<input id="fPreco" inputmode="decimal" maxlength="12" placeholder="ex.: 349,90"></label>
+    <label>Descrição<textarea id="fDesc" maxlength="1200"></textarea></label>
+    <div class="two"><label>Notas de topo<input id="fTopo" maxlength="200"></label><label>Notas de coração<input id="fCor" maxlength="200"></label></div>
+    <label>Notas de fundo<input id="fFundo" maxlength="200"></label>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div class="prev" id="prev">sem foto</div>
+      <label>Foto (JPG, PNG ou WebP)<input type="file" id="fFoto" accept="image/jpeg,image/png,image/webp"></label></div>
+    <label class="check"><input type="checkbox" id="fDest"> Mostrar como destaque</label>
+    <label class="check"><input type="checkbox" id="fEsg"> Esgotado (some do site)</label>
+    <p class="err" id="edErr" role="alert"></p>
+    <div class="end"><button type="button" class="btn line" id="cancelar">Cancelar</button><button class="btn gold" id="salvar">Salvar</button></div>
+  </form>
+</dialog>
+<dialog id="ask"><form method="dialog"><h2>Apagar perfume?</h2><p id="askTxt"></p><div class="end"><button class="btn line" value="nao">Cancelar</button><button class="btn danger" value="sim">Apagar</button></div></form></dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="lib/util.js"></script>
+<script src="supabase-config.js"></script>
+<script>
+'use strict';
+const { esc, brl, fotoSegura, normaliza } = HayaUtil;
+const $ = s => document.querySelector(s);
+const GRUPOS = ['Femininos', 'Masculinos', 'Árabes', 'Unissex', 'Cosméticos']; // mesmos GROUPS do index.html
+const cfg = window.HAYA_SUPABASE || {};
+let sb = null, pecas = [], editando = null, novaFoto = null;
+
+function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('on'); setTimeout(() => e.classList.remove('on'), 2800); }
+
+if (!cfg.url || !cfg.anonKey || !window.supabase) {
+  $('#loginErr').textContent = 'Painel ainda não configurado: preencha o supabase-config.js.';
+  $('#entrar').disabled = true;
+} else {
+  // Sessão só nesta aba (fecha a aba = sai)
+  sb = window.supabase.createClient(cfg.url, cfg.anonKey, { auth: { storage: window.sessionStorage, persistSession: true, autoRefreshToken: true } });
+  sb.auth.getSession().then(({ data }) => { if (data.session) entrarNoPainel(); });
+}
+
+/* ——— login com trava contra tentativas ——— */
+$('#loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const trava = +sessionStorage.getItem('hy-trava') || 0;
+  if (Date.now() < trava) { $('#loginErr').textContent = `Muitas tentativas. Espere ${Math.ceil((trava - Date.now()) / 1000)} s.`; return; }
+  $('#entrar').disabled = true; $('#loginErr').textContent = '';
+  const { error } = await sb.auth.signInWithPassword({ email: $('#email').value.trim(), password: $('#senha').value });
+  $('#entrar').disabled = false; $('#senha').value = '';
+  if (error) {
+    const n = (+sessionStorage.getItem('hy-erros') || 0) + 1;
+    sessionStorage.setItem('hy-erros', n);
+    if (n >= 5) { sessionStorage.setItem('hy-trava', Date.now() + 60000); sessionStorage.setItem('hy-erros', 0); }
+    $('#loginErr').textContent = 'E-mail ou senha incorretos.'; return;
+  }
+  sessionStorage.removeItem('hy-erros');
+  entrarNoPainel();
+});
+
+async function entrarNoPainel() {
+  const { data: ok, error } = await sb.rpc('e_admin');
+  if (error || ok !== true) { await sb.auth.signOut(); $('#loginErr').textContent = 'Esta conta não tem acesso ao painel.'; return; }
+  $('#login').classList.add('hidden'); $('#app').classList.remove('hidden');
+  vigiarInatividade(); carregar();
+}
+async function sair() { await sb.auth.signOut(); sessionStorage.clear(); location.reload(); }
+$('#sair').onclick = sair;
+
+/* sai sozinho após 30 min parado */
+function vigiarInatividade() {
+  let t; const reset = () => { clearTimeout(t); t = setTimeout(sair, 30 * 60 * 1000); };
+  ['pointerdown', 'keydown', 'scroll'].forEach(ev => addEventListener(ev, reset, { passive: true })); reset();
+}
+
+/* ——— lista ——— */
+async function carregar() {
+  const { data, error } = await sb.from('perfumes').select('*').order('ordem').order('criado_em', { ascending: false });
+  if (error) { toast('Erro ao carregar: ' + error.message); return; }
+  pecas = data; render();
+}
+function categorias() { return [...new Set([...GRUPOS, ...pecas.map(p => p.categoria)])]; }
+function render() {
+  $('#sVenda').textContent = pecas.filter(p => !p.esgotado).length;
+  $('#sEsg').textContent = pecas.filter(p => p.esgotado).length;
+  $('#sDest').textContent = pecas.filter(p => p.destaque && !p.esgotado).length;
+  const atual = $('#fCat').value;
+  $('#fCat').innerHTML = '<option value="">Todas as coleções</option>' + categorias().map(c => `<option ${c === atual ? 'selected' : ''}>${esc(c)}</option>`).join('');
+  const q = normaliza($('#q').value), cat = $('#fCat').value, filtrando = q || cat;
+  const lista = pecas.filter(p => (!cat || p.categoria === cat) && (!q || normaliza(p.nome + ' ' + (p.marca || '')).includes(q)));
+  $('#list').innerHTML = lista.length ? lista.map(p => {
+    const f = fotoSegura(p.foto);
+    return `<div class="item ${p.esgotado ? 'off' : ''}">
+      <div class="th">${f ? `<img src="${esc(f)}" alt="">` : 'H'}</div>
+      <div><h3>${esc(p.nome)}</h3><p>${esc(p.marca || '—')} · ${esc(p.categoria)} · ${p.preco != null ? esc(brl(p.preco)) : '<span class="chip no">sem preço</span>'}</p>
+        <p>${p.esgotado ? '<span class="chip no">esgotado</span>' : '<span class="chip">no site</span>'}${p.destaque ? '<span class="chip">destaque</span>' : ''}</p></div>
+      <div class="acts">
+        ${filtrando ? '' : `<button data-a="up" data-id="${esc(p.id)}" aria-label="Subir">↑</button><button data-a="down" data-id="${esc(p.id)}" aria-label="Descer">↓</button>`}
+        <button data-a="esg" data-id="${esc(p.id)}">${p.esgotado ? 'Voltar ao site' : 'Esgotado'}</button>
+        <button data-a="edit" data-id="${esc(p.id)}">Editar</button>
+        <button data-a="del" data-id="${esc(p.id)}">Apagar</button></div></div>`;
+  }).join('') : '<p class="empty">Nenhum perfume aqui ainda. Clique em "Cadastrar perfume".</p>';
+}
+$('#q').oninput = render; $('#fCat').onchange = render;
+
+$('#list').addEventListener('click', async e => {
+  const b = e.target.closest('button[data-a]'); if (!b) return;
+  const p = pecas.find(x => x.id === b.dataset.id); if (!p) return;
+  if (b.dataset.a === 'edit') abrirEditor(p);
+  if (b.dataset.a === 'esg') { await atualizar(p.id, { esgotado: !p.esgotado }); toast(p.esgotado ? 'Voltou ao site.' : 'Marcado como esgotado.'); }
+  if (b.dataset.a === 'del') {
+    $('#askTxt').textContent = p.nome; $('#ask').showModal();
+    $('#ask').onclose = async () => { if ($('#ask').returnValue !== 'sim') return;
+      const { error } = await sb.from('perfumes').delete().eq('id', p.id);
+      if (error) return toast('Erro: ' + error.message);
+      if (p.foto) { const nome = p.foto.split('/perfumes/').pop(); if (nome) await sb.storage.from('perfumes').remove([nome]); }
+      toast('Apagado.'); carregar(); };
+  }
+  if (b.dataset.a === 'up' || b.dataset.a === 'down') {
+    const i = pecas.indexOf(p), j = b.dataset.a === 'up' ? i - 1 : i + 1;
+    if (j < 0 || j >= pecas.length) return;
+    [pecas[i], pecas[j]] = [pecas[j], pecas[i]]; render();
+    const muda = pecas.map((x, k) => ({ id: x.id, ordem: k })).filter((x, k) => pecas[k].ordem !== k);
+    for (const m of muda) { await sb.from('perfumes').update({ ordem: m.ordem }).eq('id', m.id); pecas.find(x => x.id === m.id).ordem = m.ordem; }
+  }
+});
+async function atualizar(id, campos) { const { error } = await sb.from('perfumes').update(campos).eq('id', id); if (error) toast('Erro: ' + error.message); await carregar(); }
+
+/* ——— editor ——— */
+$('#fCategoria').innerHTML = GRUPOS.map(g => `<option>${esc(g)}</option>`).join('');
+$('#novo').onclick = () => abrirEditor(null);
+$('#cancelar').onclick = () => $('#ed').close();
+function abrirEditor(p) {
+  editando = p; novaFoto = null; $('#edErr').textContent = ''; $('#fFoto').value = '';
+  $('#edTitulo').textContent = p ? 'Editar perfume' : 'Novo perfume';
+  $('#fNome').value = p?.nome || ''; $('#fMarca').value = p?.marca || ''; $('#fCategoria').value = p?.categoria || GRUPOS[0];
+  $('#fTam').value = p?.tamanho || ''; $('#fPreco').value = p?.preco != null ? String(p.preco).replace('.', ',') : '';
+  $('#fDesc').value = p?.descricao || ''; $('#fTopo').value = p?.notas_topo || ''; $('#fCor').value = p?.notas_coracao || ''; $('#fFundo').value = p?.notas_fundo || '';
+  $('#fDest').checked = !!p?.destaque; $('#fEsg').checked = !!p?.esgotado;
+  const f = fotoSegura(p?.foto); $('#prev').innerHTML = f ? `<img src="${esc(f)}" alt="">` : 'sem foto';
+  $('#ed').showModal();
+}
+/* diminui a foto no navegador (até 1400px, WebP) antes de enviar */
+$('#fFoto').onchange = async e => {
+  const file = e.target.files[0]; if (!file) return;
+  if (!/^image\/(jpeg|png|webp)$/.test(file.type) || file.size > 15e6) { $('#edErr').textContent = 'Use uma foto JPG, PNG ou WebP de até 15 MB.'; return; }
+  const bmp = await createImageBitmap(file); const k = Math.min(1, 1400 / Math.max(bmp.width, bmp.height));
+  const c = document.createElement('canvas'); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+  c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+  novaFoto = await new Promise(r => c.toBlob(r, 'image/webp', .85));
+  $('#prev').innerHTML = `<img src="${URL.createObjectURL(novaFoto)}" alt="">`;
+};
+$('#edForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const precoTxt = $('#fPreco').value.trim().replace(/\./g, '').replace(',', '.');
+  if (precoTxt && (isNaN(+precoTxt) || +precoTxt < 0)) { $('#edErr').textContent = 'Preço inválido. Ex.: 349,90'; return; }
+  $('#salvar').disabled = true;
+  const id = editando?.id || crypto.randomUUID();
+  const dados = { id, nome: $('#fNome').value.trim(), marca: $('#fMarca').value.trim() || null, categoria: $('#fCategoria').value,
+    tamanho: $('#fTam').value.trim() || null, preco: precoTxt ? +precoTxt : null, descricao: $('#fDesc').value.trim() || null,
+    notas_topo: $('#fTopo').value.trim() || null, notas_coracao: $('#fCor').value.trim() || null, notas_fundo: $('#fFundo').value.trim() || null,
+    destaque: $('#fDest').checked, esgotado: $('#fEsg').checked };
+  if (!editando) dados.ordem = pecas.length;
+  try {
+    if (novaFoto) {
+      const caminho = `${id}-${Date.now()}.webp`;
+      const up = await sb.storage.from('perfumes').upload(caminho, novaFoto, { contentType: 'image/webp' });
+      if (up.error) throw up.error;
+      dados.foto = sb.storage.from('perfumes').getPublicUrl(caminho).data.publicUrl;
+    }
+    const { error } = await sb.from('perfumes').upsert(dados);
+    if (error) throw error;
+    $('#ed').close(); toast('Salvo!'); carregar();
+  } catch (err) { $('#edErr').textContent = 'Não salvou: ' + (err.message || err); }
+  $('#salvar').disabled = false;
+});
+</script>
+</body>
+</html>
