@@ -32,6 +32,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* cabeçalho */
 .top{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 4vw;color:var(--cream);transition:background .5s var(--e-out),transform .5s var(--e-out)}
+.top:not(.solid){background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0))}
 .top.solid{background:rgba(11,11,11,.92);backdrop-filter:blur(8px)}
 .top.hide{transform:translateY(-100%)}
 .brand{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:1.5rem;letter-spacing:.32em;text-transform:uppercase}
@@ -52,38 +53,42 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sheet .x{position:absolute;top:18px;right:4vw;border:1px solid var(--gold);width:44px;height:44px}
 
 /* abertura */
-.hero{position:relative;min-height:100svh;background:radial-gradient(70% 60% at 50% 55%,#2a2116 0%,#120f0c 55%,#070606 100%);color:var(--cream);overflow:hidden;isolation:isolate;display:grid;place-items:center;padding:110px 0 150px}
-.hero-glow{position:absolute;left:50%;top:52%;width:min(900px,120vw);aspect-ratio:1;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(217,179,101,.28) 0%,rgba(217,179,101,.08) 35%,transparent 65%);z-index:-1;pointer-events:none}
-.hero-corner{position:absolute;top:104px;font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(243,235,219,.6);z-index:3}
-.hero-corner.tl{left:clamp(30px,5vw,70px)}.hero-corner.tr{right:clamp(30px,5vw,70px)}.hero-corner.tc{left:50%;transform:translateX(-50%);color:var(--gold-l)}
-.hero-word{position:absolute;left:0;right:0;top:50%;transform:translateY(-58%);display:flex;justify-content:center;gap:.02em;font-family:var(--serif);font-weight:500;font-size:clamp(9rem,31vw,30rem);line-height:.8;letter-spacing:.04em;pointer-events:none;z-index:0;margin:0}
-.hero-word .hw{display:inline-block;color:transparent;-webkit-text-stroke:1px rgba(217,179,101,.55);background:linear-gradient(180deg,rgba(217,179,101,.28),rgba(217,179,101,0) 85%);-webkit-background-clip:text;background-clip:text;will-change:transform,opacity}
-.niche{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;will-change:transform}
-.arch{position:relative;width:clamp(210px,23vw,330px);aspect-ratio:3/4.2;border-radius:999px 999px 0 0;overflow:hidden;border:1px solid rgba(217,179,101,.7);box-shadow:0 0 0 8px rgba(217,179,101,.06),0 0 140px rgba(217,179,101,.35),0 40px 80px rgba(0,0,0,.6);background:#e9dcc2}
-.arch::after{content:"";position:absolute;inset:9px;border-radius:999px 999px 0 0;border:1px solid rgba(255,244,220,.55);pointer-events:none}
-.arch img{width:100%;height:100%;object-fit:cover;will-change:transform,opacity}
-.arch .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,194,90,.18),transparent 40%,rgba(42,24,8,.35));pointer-events:none}
-.arch .hs{position:absolute;inset:0;opacity:0}
-.arch .hs.on{opacity:1}
-.hero-cap{margin-top:16px;text-align:center;min-height:2.6em}
-.hero-cap small{display:block;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-l)}
-.hero-cap b{font-family:var(--serif);font-weight:500;font-size:1.35rem}
-.arch .shine{z-index:2;position:absolute;top:0;bottom:0;width:45%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,250,235,.45),transparent);transform:skewX(-14deg);pointer-events:none}
-.plinth{width:calc(clamp(210px,23vw,330px) + 56px);height:22px;background:linear-gradient(180deg,#3a2c1a,#15110c);border-top:1px solid var(--gold-l);box-shadow:0 30px 60px rgba(0,0,0,.7)}
-.plinth::after{content:"";display:block;width:calc(100% + 30px);margin-left:-15px;height:10px;margin-top:22px;background:#0d0b09;border-top:1px solid rgba(217,179,101,.3)}
-.hero-foot{position:absolute;left:clamp(30px,5vw,70px);right:clamp(30px,5vw,70px);bottom:clamp(40px,6vh,70px);display:flex;justify-content:space-between;align-items:flex-end;gap:30px;z-index:3}
-.hf-title{font-family:var(--serif);font-size:clamp(1.6rem,2.6vw,2.4rem);line-height:1.1;margin:8px 0 18px;max-width:14em}
-.hf-title em{color:var(--gold-l)}
-.hf-r{text-align:right;font-size:.82rem;line-height:1.7;color:rgba(243,235,219,.7)}
-.hf-r b{font-family:var(--serif);font-size:1.3rem;font-weight:500;color:var(--cream)}
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,43fr) minmax(0,57fr);background:#000;color:var(--cream);overflow:hidden;isolation:isolate}
+.hero-copy{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:space-between;padding:132px clamp(28px,4.5vw,72px) 44px}
+.hero-brand{font-size:.78rem;letter-spacing:.08em;color:rgba(243,235,219,.62)}
+.hero-brand b{color:var(--gold-l);font-weight:500}
+.slides-txt{position:relative;min-height:22rem;display:grid;align-content:center}
+.st{grid-area:1/1;visibility:hidden}
+.st.on{visibility:visible}
+.st h1,.st h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.7rem,4.7vw,5.3rem);line-height:.98;letter-spacing:-.01em;max-width:9.5em}
+.st p{margin:22px 0 30px;max-width:30em;color:rgba(243,235,219,.74);font-size:1.02rem;line-height:1.65}
+.hero-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.hn{text-align:left;font-size:.8rem;color:rgba(243,235,219,.5);padding-top:14px;position:relative;transition:color .4s}
+.hn::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(243,235,219,.2)}
+.hn i{position:absolute;left:0;right:0;top:0;height:1px;background:var(--gold-l);transform:scaleX(0);transform-origin:left}
+.hn[aria-current=true]{color:var(--cream)}
+.hn:hover{color:var(--cream)}
+.hero-media{position:relative;overflow:hidden;background:#120d08}
+.hero-media::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.55),transparent 22%),linear-gradient(0deg,rgba(0,0,0,.45),transparent 30%)}
+.hm{position:absolute;inset:0;visibility:hidden}
+.hm.on{visibility:visible}
+.hm img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.hero-mark{position:absolute;z-index:4;left:calc(43% - .16em);bottom:-.17em;margin:0;font-family:var(--serif);font-weight:500;font-size:clamp(7rem,21vw,21rem);line-height:1;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px rgba(217,179,101,.75);pointer-events:none;display:flex}
+.hero-mark span{display:inline-block;will-change:transform}
+.hero-side{position:absolute;z-index:4;right:clamp(20px,2.4vw,40px);bottom:40px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:.72rem;letter-spacing:.1em;color:rgba(243,235,219,.75)}
 @media(max-width:860px){
- .hero{padding:96px 0 0;place-items:start center;grid-template-rows:auto auto}
- .hero-corner.tl,.hero-corner.tr{display:none}.hero-corner.tc{top:88px;white-space:nowrap}
- .hero-word{top:30%;font-size:38vw}
- .niche{margin-top:70px}.arch{width:60vw}.plinth{width:calc(60vw + 40px)}
- .hero-foot{position:relative;left:auto;right:auto;bottom:auto;flex-direction:column;align-items:center;text-align:center;padding:34px 24px 70px}
- .hf-r{text-align:center}.hf-title{margin-inline:auto}
- .hero .scroll-cue{display:none}
+ .hero{grid-template-columns:1fr;grid-template-rows:auto auto}
+ .hero-media{order:-1;height:66svh}
+ .hero-copy{padding:26px 22px 40px;gap:24px}
+ .hero-brand{display:none}
+ .slides-txt{min-height:15.5rem;align-content:start}
+ .st h1,.st h2{font-size:clamp(2.3rem,10vw,3rem)}
+ .st p{margin:14px 0 22px}
+ .hero-mark{font-size:31vw;bottom:auto;top:calc(66svh - .78em);left:14px}
+ .hero-side{display:none}
+ .hero-nav{gap:8px}.hn{font-size:.7rem}
+}
+.scroll-cue{display:none}
 }
 .scroll-cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:.64rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-l);display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2}
 .scroll-cue i{width:1px;height:38px;background:var(--gold-l);transform-origin:top;animation:cue 2.2s var(--e-io) infinite}
@@ -189,6 +194,7 @@ dialog::backdrop{background:rgba(11,11,11,.78);backdrop-filter:blur(4px)}
 .feat.is3d .car,.feat.is3d .car-bar{display:none}
 .v3d-stage{height:clamp(440px,64vh,660px);cursor:grab;touch-action:pan-y}
 .v3d-stage:active{cursor:grabbing}
+@media(min-width:861px){.v3d-stage{height:clamp(500px,74vh,760px)}.v3d-info{margin-top:-30px}}
 .v3d-stage canvas{display:block;width:100%!important;height:100%!important}
 .v3d-info{text-align:center;margin-top:-10px;padding:0 6vw}
 .v3d-info small{display:block;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
@@ -241,23 +247,25 @@ footer a{color:var(--gold-l);border-bottom:1px solid rgba(217,179,101,.4)}
 </div>
 
 <main id="inicio">
-<section class="hero" id="hero">
-  <div class="frame" aria-hidden="true"></div>
-  <div class="hero-glow" aria-hidden="true"></div>
-  <p class="hero-corner tl" data-hero>Perfumes importados</p>
-  <p class="hero-corner tc" data-hero>Curadoria de fragrâncias</p>
-  <p class="hero-corner tr" data-hero>Tatuí · SP</p>
-  <h1 class="hero-word" id="heroWord" aria-label="Haya Perfumaria"><span class="hw" aria-hidden="true">H</span><span class="hw" aria-hidden="true">A</span><span class="hw" aria-hidden="true">Y</span><span class="hw" aria-hidden="true">A</span></h1>
-  <div class="niche" id="niche">
-    <div class="arch" id="arch"><img class="hs on" src="img/perfumes/p8.webp" alt="Chanel Nº5 Eau de Parfum" fetchpriority="high"><span class="tint"></span><span class="shine" id="shine"></span></div>
-    <div class="plinth" id="plinth" aria-hidden="true"></div>
-    <p class="hero-cap" id="heroCap" aria-live="polite"><small>Chanel</small><b>Nº5 Eau de Parfum</b></p>
+<section class="hero" id="hero" aria-roledescription="carrossel" aria-label="Campanhas da Haya">
+  <div class="hero-copy">
+    <p class="hero-brand"><b>Haya Perfumaria</b> — perfumes importados em Tatuí</p>
+    <div class="slides-txt" aria-live="polite">
+    <div class="st on" data-i="0"><h1>Cada fragrância guarda uma história</h1><p>Perfumes importados e árabes escolhidos a dedo. Venha sentir na pele, na Galeria Coop.</p><a class="btn" href="#catalogo">Ver os perfumes</a></div>
+    <div class="st" data-i="1" aria-hidden="true"><h2>Femininos que marcam presença</h2><p>Florais, orientais e gourmands das grandes casas, para o dia e para a noite.</p><button class="btn" data-g="Femininos">Ver femininos</button></div>
+    <div class="st" data-i="2" aria-hidden="true"><h2>O raro mora no nicho</h2><p>Árabes e perfumaria nicho para quem quer um cheiro que ninguém mais tem.</p><button class="btn" data-g="Árabes">Ver árabes</button></div>
+    <div class="st" data-i="3" aria-hidden="true"><h2>Âmbar, baunilha e madeira</h2><p>Fragrâncias quentes que acompanham o dia inteiro e ficam na memória.</p><button class="btn" data-g="Unissex">Ver unissex</button></div>
+    </div>
+    <nav class="hero-nav" aria-label="Escolher campanha"><button class="hn" data-go="0" aria-current="true"><i></i>Haya</button><button class="hn" data-go="1" aria-current="false"><i></i>Femininos</button><button class="hn" data-go="2" aria-current="false"><i></i>Nicho e árabes</button><button class="hn" data-go="3" aria-current="false"><i></i>Amadeirados</button></nav>
   </div>
-  <div class="hero-foot">
-    <div data-hero><p class="eyebrow">Haya Perfumaria</p><p class="hf-title">Cada fragrância guarda uma <em>história</em></p><a class="btn" href="#catalogo">Ver os perfumes</a></div>
-    <div class="hf-r" data-hero><b>Galeria Coop</b><br>Rua Onze de Agosto, 3043<br>Seg a sáb 9h–22h · Dom 9h–16h</div>
+  <div class="hero-media" id="heroMedia">
+    <div class="hm on" data-i="0"><picture><source media="(max-width:860px)" srcset="img/hero/spray-m.webp"><img src="img/hero/spray.webp" alt="Mão borrifando perfume" decoding="async" fetchpriority="high"></picture></div>
+    <div class="hm" data-i="1"><picture><source media="(max-width:860px)" srcset="img/hero/noir-m.webp"><img src="img/hero/noir.webp" alt="Frasco Coco Noir entre flores vermelhas" decoding="async"></picture></div>
+    <div class="hm" data-i="2"><picture><source media="(max-width:860px)" srcset="img/hero/verde-m.webp"><img src="img/hero/verde.webp" alt="Frasco verde sobre a água" decoding="async"></picture></div>
+    <div class="hm" data-i="3"><picture><source media="(max-width:860px)" srcset="img/hero/ambar-m.webp"><img src="img/hero/ambar.webp" alt="Frasco com pedras de âmbar no ar" decoding="async"></picture></div>
   </div>
-  <div class="scroll-cue" aria-hidden="true">Role<i></i></div>
+  <p class="hero-mark" aria-hidden="true"><span>H</span><span>A</span><span>Y</span><span>A</span></p>
+  <p class="hero-side">Galeria Coop · Rua Onze de Agosto, 3043</p>
 </section>
 
 <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marq"></div></div>
@@ -476,28 +484,49 @@ function renderDestaques() {
   car.addEventListener('click', e => { if (moveu) { e.stopPropagation(); e.preventDefault(); moveu = false; } }, true);
 }
 
-/* ——— início: perfumes reais se revezam no nicho ——— */
-function heroFotos() {
-  const lista = items.filter(p => fotoSegura(p.foto)).sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0)).slice(0, 5);
-  if (lista.length < 2) return;
-  const arch = $('#arch'), primeira = arch.querySelector('.hs'), tint = arch.querySelector('.tint');
-  primeira.src = fotoSegura(lista[0].foto); primeira.alt = lista[0].nome;
-  lista.slice(1).forEach(p => { const im = new Image(); im.className = 'hs'; im.alt = p.nome; im.decoding = 'async'; im.dataset.src = fotoSegura(p.foto); arch.insertBefore(im, tint); });
-  const fotos = [...arch.querySelectorAll('.hs')], cap = $('#heroCap');
-  const legenda = p => `<small>${esc(p.marca || p.categoria)}</small><b>${esc(p.nome)}</b>`;
-  cap.innerHTML = legenda(lista[0]);
-  if (reduce || !window.gsap) return;
-  let i = 0;
-  setTimeout(() => fotos.forEach(f => { if (f.dataset.src) f.src = f.dataset.src; }), 2500); // baixa as outras depois da abertura
-  setInterval(() => {
-    if (document.hidden || scrollY > innerHeight) return;
-    const atual = fotos[i]; i = (i + 1) % fotos.length; const prox = fotos[i];
-    gsap.set(prox, { opacity: 0, scale: 1.12 }); prox.classList.add('on');
-    gsap.to(prox, { opacity: 1, scale: 1, duration: 1.6, ease: 'expo.out' });
-    gsap.to(atual, { opacity: 0, duration: 1, onComplete: () => atual.classList.remove('on') });
-    gsap.fromTo('#shine', { left: '-60%' }, { left: '130%', duration: 1.4, ease: 'power2.inOut' });
-    gsap.to(cap, { opacity: 0, y: -8, duration: .35, onComplete: () => { cap.innerHTML = legenda(lista[i]); gsap.fromTo(cap, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: .6 }); } });
-  }, 4800);
+/* ——— início: campanhas trocam com cortina da direita, zoom lento e título palavra por palavra ——— */
+function heroSlides() {
+  const fotos = [...document.querySelectorAll('.hm')], textos = [...document.querySelectorAll('.st')], botoes = [...document.querySelectorAll('.hn')];
+  const N = fotos.length, TEMPO = 6.5;
+  let i = 0, ocupado = false, barra, pausado = false;
+  const anima = !reduce && window.gsap;
+  const zoom = el => anima && gsap.fromTo(el.querySelector('img'), { scale: 1.12 }, { scale: 1, duration: TEMPO + 1.6, ease: 'none' });
+  function progresso() {
+    if (!anima) return;
+    barra && barra.kill();
+    botoes.forEach(b => gsap.set(b.querySelector('i'), { scaleX: 0 }));
+    barra = gsap.to(botoes[i].querySelector('i'), { scaleX: 1, duration: TEMPO, ease: 'none', onComplete: () => ir(i + 1) });
+    if (pausado) barra.pause();
+  }
+  function ir(n) {
+    n = (n + N) % N; if (n === i || ocupado) return;
+    const de = i; i = n; ocupado = true;
+    botoes.forEach((b, k) => b.setAttribute('aria-current', k === i ? 'true' : 'false'));
+    textos.forEach((t, k) => t.setAttribute('aria-hidden', k === i ? 'false' : 'true'));
+    if (!anima) { fotos[de].classList.remove('on'); fotos[i].classList.add('on'); textos[de].classList.remove('on'); textos[i].classList.add('on'); ocupado = false; return; }
+    const f = fotos[i], t = textos[i], titulo = t.querySelector('h1,h2');
+    f.classList.add('on'); gsap.set(f, { zIndex: 2 }); gsap.set(fotos[de], { zIndex: 1 });
+    gsap.fromTo(f, { clipPath: 'inset(0 0 0 100%)' }, { clipPath: 'inset(0 0 0 0%)', duration: 1.4, ease: 'expo.inOut', onComplete: () => { fotos[de].classList.remove('on'); ocupado = false; } });
+    gsap.fromTo(f.querySelector('img'), { scale: 1.3, xPercent: 8 }, { scale: 1.12, xPercent: 0, duration: 1.4, ease: 'expo.inOut', onComplete: () => zoom(f) });
+    gsap.to(fotos[de].querySelector('img'), { xPercent: -10, duration: 1.4, ease: 'expo.inOut', onComplete: () => gsap.set(fotos[de].querySelector('img'), { xPercent: 0 }) });
+    gsap.to(textos[de], { opacity: 0, y: -16, duration: .45, onComplete: () => { textos[de].classList.remove('on'); gsap.set(textos[de], { opacity: 1, y: 0 }); } });
+    t.classList.add('on');
+    if (!titulo._sp && window.SplitText) titulo._sp = SplitText.create(titulo, { type: 'words', mask: 'words' });
+    gsap.from(titulo._sp ? titulo._sp.words : titulo, { yPercent: 110, duration: 1.1, stagger: .06, ease: 'expo.out', delay: .35 });
+    gsap.from(t.querySelectorAll('p,.btn'), { opacity: 0, y: 16, duration: .8, stagger: .08, delay: .6 });
+    progresso();
+  }
+  botoes.forEach((b, k) => b.addEventListener('click', () => ir(k)));
+  /* arrastar a foto para os lados troca a campanha (celular) */
+  let x0 = null;
+  $('#heroMedia').addEventListener('pointerdown', e => { x0 = e.clientX; });
+  $('#heroMedia').addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) ir(i + (dx < 0 ? 1 : -1)); });
+  /* pausa com o mouse em cima, fora da tela ou com a aba escondida */
+  const pausar = v => { pausado = v; if (barra) v ? barra.pause() : barra.resume(); };
+  $('#hero').addEventListener('pointerenter', e => e.pointerType === 'mouse' && pausar(true));
+  $('#hero').addEventListener('pointerleave', () => pausar(false));
+  new IntersectionObserver(([e]) => pausar(!e.isIntersecting)).observe($('#hero'));
+  zoom(fotos[0]); progresso();
 }
 
 /* ——— animações ——— */
@@ -506,7 +535,7 @@ function animacoes() {
   marq.innerHTML = [...frases, ...frases, ...frases, ...frases].map(f => `<span>${esc(f)}</span>`).join('');
   const solid = () => $('#top').classList.toggle('solid', scrollY > 40);
   solid();
-  if (reduce || !window.gsap) { $('#curtain').remove(); window.addEventListener('scroll', solid, { passive: true }); return; }
+  if (reduce || !window.gsap) { $('#curtain').remove(); heroSlides(); window.addEventListener('scroll', solid, { passive: true }); return; }
   gsap.registerPlugin(ScrollTrigger);
   const temSplit = !!window.SplitText; if (temSplit) gsap.registerPlugin(SplitText);
   /* títulos: palavras sobem de dentro de uma máscara (SplitText) */
@@ -523,37 +552,19 @@ function animacoes() {
   lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
   document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const id = a.getAttribute('href'); if (id.length > 1 && $(id)) { e.preventDefault(); lenis.scrollTo(id, { offset: -10 }); } }));
   let last = 0; lenis.on('scroll', ({ scroll }) => { $('#top').classList.toggle('solid', scroll > 40); $('#top').classList.toggle('hide', scroll > last && scroll > 500); last = scroll; });
-  /* abertura: cortina sobe, HAYA gigante nasce, o nicho acende e o perfume aparece */
+  /* abertura: cortina sobe, a foto abre de baixo para cima, as letras HAYA sobem */
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
   tl.to('#curtain img', { scale: 1.15, duration: .8, ease: 'power2.inOut' })
     .to('#curtain', { yPercent: -100, duration: 1, ease: 'power4.inOut' }, '+=.1')
-    .from('.hero-glow', { opacity: 0, scale: .6, duration: 1.8, ease: 'power2.out' }, '-=.5')
-    .from('#heroWord .hw', { yPercent: 70, opacity: 0, duration: 1.4, stagger: .12, ease: 'expo.out' }, '<')
-    .from('#plinth', { scaleX: 0, duration: 1, ease: 'expo.out' }, '-=1.1')
-    .from('#arch', { clipPath: 'inset(100% 0 0 0)', duration: 1.3, ease: 'expo.inOut' }, '-=.8')
-    .from('#arch .hs.on', { scale: 1.35, duration: 2, ease: 'expo.out' }, '-=.7')
-    .to('#shine', { left: '130%', duration: 1.4, ease: 'power2.inOut' }, '-=1.2')
-    .from('[data-hero]', { y: 24, opacity: 0, duration: .9, stagger: .1 }, '-=1.3')
-    .from(temSplit ? SplitText.create('.hf-title', { type: 'words', mask: 'words' }).words : [], { yPercent: 110, duration: 1.1, stagger: .06, ease: 'expo.out' }, '<.1')
-    .from('.frame', { clipPath: 'inset(50% 50% 50% 50%)', duration: 1.3, ease: 'power3.inOut' }, '-=1.4')
-    .add(() => { $('#curtain').remove();
-      /* brilho passa pelo vidro de tempos em tempos */
-      gsap.fromTo('#shine', { left: '-60%' }, { left: '130%', duration: 1.6, ease: 'power2.inOut', repeat: -1, repeatDelay: 4 });
-      /* perfume flutua devagar */
-      gsap.to('#niche', { y: -10, duration: 3.2, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-    });
-  /* mouse: o nicho e as letras se mexem em sentidos opostos (profundidade) */
-  if (matchMedia('(hover:hover)').matches) {
-    const ax = gsap.quickTo('#arch', 'rotationY', { duration: .8 }), ay = gsap.quickTo('#arch', 'rotationX', { duration: .8 });
-    const wx = gsap.quickTo('#heroWord', 'x', { duration: 1.2 });
-    gsap.set('#arch', { transformPerspective: 900 });
-    $('#hero').addEventListener('pointermove', e => { const nx = e.clientX / innerWidth - .5, ny = e.clientY / innerHeight - .5; ax(nx * 10); ay(-ny * 8); wx(-nx * 40); });
-    $('#hero').addEventListener('pointerleave', () => { ax(0); ay(0); wx(0); });
-  }
-  /* ao rolar: HAYA sobe e some, o perfume chega mais perto */
-  gsap.to('#heroWord', { yPercent: -40, opacity: 0, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
-  gsap.to('#arch', { scale: 1.12, yPercent: -8, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
-  gsap.to('.hero-foot', { opacity: 0, y: -40, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: '45% top', scrub: true } });
+    .from('.hm.on', { clipPath: 'inset(100% 0 0 0)', duration: 1.5, ease: 'expo.inOut' }, '-=.6')
+    .from('.hm.on img', { scale: 1.3, duration: 2.4, ease: 'expo.out' }, '-=1')
+    .from('.hero-mark span', { yPercent: 100, opacity: 0, duration: 1.4, stagger: .09, ease: 'expo.out' }, '-=2')
+    .from(temSplit ? SplitText.create('.st.on h1', { type: 'words', mask: 'words' }).words : '.st.on h1', { yPercent: 110, duration: 1.1, stagger: .06, ease: 'expo.out' }, '-=1.6')
+    .from('.st.on p, .st.on .btn, .hero-brand, .hero-nav, .hero-side', { opacity: 0, y: 18, duration: .9, stagger: .08 }, '-=.9')
+    .add(() => { $('#curtain').remove(); heroSlides(); });
+  /* ao rolar: a foto desce mais devagar que a página e o letreiro sobe */
+  gsap.to('#heroMedia', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero-mark', { yPercent: -40, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
   /* entradas ao rolar */
   gsap.utils.toArray('[data-reveal]').forEach(el => gsap.from(el, { y: 50, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } }));
   ScrollTrigger.batch('#car .slide', { start: 'top 90%', once: true, onEnter: b => gsap.from(b, { x: 80, opacity: 0, duration: 1.1, stagger: .09, ease: 'expo.out' }) });
@@ -577,7 +588,7 @@ function animacoes() {
   window.hayaVitrine = items.filter(p => fotoSegura(p.foto)).sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0)).slice(0, 10)
     .map(p => ({ id: p.id, nome: p.nome, marca: p.marca || p.categoria, notas: [p.notas_topo, p.notas_coracao].filter(Boolean).join(' · '), foto: fotoSegura(p.foto) }));
   dispatchEvent(new Event('haya:vitrine'));
-  heroFotos();
+
   animacoes();
 })();
 </script>
