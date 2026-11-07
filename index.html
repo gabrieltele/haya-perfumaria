@@ -61,14 +61,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .niche{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;will-change:transform}
 .arch{position:relative;width:clamp(210px,23vw,330px);aspect-ratio:3/4.2;border-radius:999px 999px 0 0;overflow:hidden;border:1px solid rgba(217,179,101,.7);box-shadow:0 0 0 8px rgba(217,179,101,.06),0 0 140px rgba(217,179,101,.35),0 40px 80px rgba(0,0,0,.6);background:#e9dcc2}
 .arch::after{content:"";position:absolute;inset:9px;border-radius:999px 999px 0 0;border:1px solid rgba(255,244,220,.55);pointer-events:none}
-.arch img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.arch img{width:100%;height:100%;object-fit:cover;will-change:transform,opacity}
 .arch .tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(242,194,90,.18),transparent 40%,rgba(42,24,8,.35));pointer-events:none}
-.arch .b3d{position:absolute;inset:0;z-index:1;cursor:grab;touch-action:pan-y}
-.arch .b3d:active{cursor:grabbing}
-.arch .b3d canvas{display:block;width:100%!important;height:100%!important}
-.arch img,.arch .tint{transition:opacity .8s}
-.niche.is3d .arch img,.niche.is3d .arch .tint{opacity:0}
-.niche.is3d .arch{background:radial-gradient(75% 60% at 50% 42%,#f7dc9c 0%,#d29a4a 38%,#6b3f16 78%,#2a1808 100%)}
+.arch .hs{position:absolute;inset:0;opacity:0}
+.arch .hs.on{opacity:1}
+.hero-cap{margin-top:16px;text-align:center;min-height:2.6em}
+.hero-cap small{display:block;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-l)}
+.hero-cap b{font-family:var(--serif);font-weight:500;font-size:1.35rem}
 .arch .shine{z-index:2;position:absolute;top:0;bottom:0;width:45%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,250,235,.45),transparent);transform:skewX(-14deg);pointer-events:none}
 .plinth{width:calc(clamp(210px,23vw,330px) + 56px);height:22px;background:linear-gradient(180deg,#3a2c1a,#15110c);border-top:1px solid var(--gold-l);box-shadow:0 30px 60px rgba(0,0,0,.7)}
 .plinth::after{content:"";display:block;width:calc(100% + 30px);margin-left:-15px;height:10px;margin-top:22px;background:#0d0b09;border-top:1px solid rgba(217,179,101,.3)}
@@ -185,6 +184,16 @@ dialog::backdrop{background:rgba(11,11,11,.78);backdrop-filter:blur(4px)}
 .slide small{font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:500}
 .slide h3{font-family:var(--serif);font-weight:500;font-size:1.7rem;line-height:1.05;margin:4px 0 6px}
 .slide p{font-size:.88rem;color:#5a4a33}
+.v3d{display:none;position:relative}
+.feat.is3d .v3d{display:block}
+.feat.is3d .car,.feat.is3d .car-bar{display:none}
+.v3d-stage{height:clamp(440px,64vh,660px);cursor:grab;touch-action:pan-y}
+.v3d-stage:active{cursor:grabbing}
+.v3d-stage canvas{display:block;width:100%!important;height:100%!important}
+.v3d-info{text-align:center;margin-top:-10px;padding:0 6vw}
+.v3d-info small{display:block;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.v3d-info h3{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.05;margin:4px 0 6px}
+.v3d-info p{color:#5a4a33;font-size:.92rem;margin-bottom:16px}
 .car-bar{height:1px;background:var(--sand);margin-top:6px}
 .car-bar i{display:block;height:100%;background:var(--ink);transform-origin:left;transform:scaleX(0)}
 
@@ -240,11 +249,12 @@ footer a{color:var(--gold-l);border-bottom:1px solid rgba(217,179,101,.4)}
   <p class="hero-corner tr" data-hero>Tatuí · SP</p>
   <h1 class="hero-word" id="heroWord" aria-label="Haya Perfumaria"><span class="hw" aria-hidden="true">H</span><span class="hw" aria-hidden="true">A</span><span class="hw" aria-hidden="true">Y</span><span class="hw" aria-hidden="true">A</span></h1>
   <div class="niche" id="niche">
-    <div class="arch" id="arch"><img src="img/perfumes/p8.webp" alt="Perfume em destaque na vitrine da Haya" fetchpriority="high"><span class="tint"></span><div class="b3d" id="bottle3d" aria-label="Frasco de perfume em 3D: arraste para girar" role="img"></div><span class="shine" id="shine"></span></div>
+    <div class="arch" id="arch"><img class="hs on" src="img/perfumes/p8.webp" alt="Chanel Nº5 Eau de Parfum" fetchpriority="high"><span class="tint"></span><span class="shine" id="shine"></span></div>
     <div class="plinth" id="plinth" aria-hidden="true"></div>
+    <p class="hero-cap" id="heroCap" aria-live="polite"><small>Chanel</small><b>Nº5 Eau de Parfum</b></p>
   </div>
   <div class="hero-foot">
-    <div data-hero><p class="eyebrow">Haya Perfumaria</p><p class="hf-title">Cada fragrância guarda uma <em>história</em>.</p><a class="btn" href="#catalogo">Ver os perfumes</a></div>
+    <div data-hero><p class="eyebrow">Haya Perfumaria</p><p class="hf-title">Cada fragrância guarda uma <em>história</em></p><a class="btn" href="#catalogo">Ver os perfumes</a></div>
     <div class="hf-r" data-hero><b>Galeria Coop</b><br>Rua Onze de Agosto, 3043<br>Seg a sáb 9h–22h · Dom 9h–16h</div>
   </div>
   <div class="scroll-cue" aria-hidden="true">Role<i></i></div>
@@ -260,6 +270,10 @@ footer a{color:var(--gold-l);border-bottom:1px solid rgba(217,179,101,.4)}
 <section id="destaques" class="feat pad">
   <div class="wrap"><div class="head" data-reveal><div><p class="eyebrow">Vitrine da semana</p><h2 class="display">Em <em>destaque</em></h2></div>
     <div class="car-nav"><button id="carPrev" aria-label="Anterior">←</button><button id="carNext" aria-label="Próximo">→</button></div></div></div>
+  <div class="v3d" id="v3d" aria-label="Vitrine 3D: arraste para girar" role="region">
+    <div class="v3d-stage" id="v3dStage"></div>
+    <div class="v3d-info" id="v3dInfo" aria-live="polite"></div>
+  </div>
   <div class="car" id="car" tabindex="0" aria-label="Perfumes em destaque"></div>
   <div class="wrap"><div class="car-bar" aria-hidden="true"><i id="carBar"></i></div></div>
 </section>
@@ -313,7 +327,7 @@ footer a{color:var(--gold-l);border-bottom:1px solid rgba(217,179,101,.4)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module" src="js/frasco3d.js"></script>
+<script type="module" src="js/vitrine3d.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="lib/util.js"></script>
 <script src="supabase-config.js"></script>
@@ -462,6 +476,30 @@ function renderDestaques() {
   car.addEventListener('click', e => { if (moveu) { e.stopPropagation(); e.preventDefault(); moveu = false; } }, true);
 }
 
+/* ——— início: perfumes reais se revezam no nicho ——— */
+function heroFotos() {
+  const lista = items.filter(p => fotoSegura(p.foto)).sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0)).slice(0, 5);
+  if (lista.length < 2) return;
+  const arch = $('#arch'), primeira = arch.querySelector('.hs'), tint = arch.querySelector('.tint');
+  primeira.src = fotoSegura(lista[0].foto); primeira.alt = lista[0].nome;
+  lista.slice(1).forEach(p => { const im = new Image(); im.className = 'hs'; im.alt = p.nome; im.decoding = 'async'; im.dataset.src = fotoSegura(p.foto); arch.insertBefore(im, tint); });
+  const fotos = [...arch.querySelectorAll('.hs')], cap = $('#heroCap');
+  const legenda = p => `<small>${esc(p.marca || p.categoria)}</small><b>${esc(p.nome)}</b>`;
+  cap.innerHTML = legenda(lista[0]);
+  if (reduce || !window.gsap) return;
+  let i = 0;
+  setTimeout(() => fotos.forEach(f => { if (f.dataset.src) f.src = f.dataset.src; }), 2500); // baixa as outras depois da abertura
+  setInterval(() => {
+    if (document.hidden || scrollY > innerHeight) return;
+    const atual = fotos[i]; i = (i + 1) % fotos.length; const prox = fotos[i];
+    gsap.set(prox, { opacity: 0, scale: 1.12 }); prox.classList.add('on');
+    gsap.to(prox, { opacity: 1, scale: 1, duration: 1.6, ease: 'expo.out' });
+    gsap.to(atual, { opacity: 0, duration: 1, onComplete: () => atual.classList.remove('on') });
+    gsap.fromTo('#shine', { left: '-60%' }, { left: '130%', duration: 1.4, ease: 'power2.inOut' });
+    gsap.to(cap, { opacity: 0, y: -8, duration: .35, onComplete: () => { cap.innerHTML = legenda(lista[i]); gsap.fromTo(cap, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: .6 }); } });
+  }, 4800);
+}
+
 /* ——— animações ——— */
 function animacoes() {
   const marq = $('#marq'), frases = ['Perfumes importados', 'Curadoria de fragrâncias', 'Cada fragrância guarda uma história', 'Galeria Coop · Tatuí', 'Cosméticos'];
@@ -493,10 +531,10 @@ function animacoes() {
     .from('#heroWord .hw', { yPercent: 70, opacity: 0, duration: 1.4, stagger: .12, ease: 'expo.out' }, '<')
     .from('#plinth', { scaleX: 0, duration: 1, ease: 'expo.out' }, '-=1.1')
     .from('#arch', { clipPath: 'inset(100% 0 0 0)', duration: 1.3, ease: 'expo.inOut' }, '-=.8')
-    .from('#arch img', { scale: 1.35, duration: 2, ease: 'expo.out' }, '-=.7')
+    .from('#arch .hs.on', { scale: 1.35, duration: 2, ease: 'expo.out' }, '-=.7')
     .to('#shine', { left: '130%', duration: 1.4, ease: 'power2.inOut' }, '-=1.2')
     .from('[data-hero]', { y: 24, opacity: 0, duration: .9, stagger: .1 }, '-=1.3')
-    .from(temSplit ? SplitText.create('.hf-title', { type: 'lines', mask: 'lines' }).lines : [], { yPercent: 105, duration: 1.1, stagger: .12, ease: 'expo.out' }, '<.1')
+    .from(temSplit ? SplitText.create('.hf-title', { type: 'words', mask: 'words' }).words : [], { yPercent: 110, duration: 1.1, stagger: .06, ease: 'expo.out' }, '<.1')
     .from('.frame', { clipPath: 'inset(50% 50% 50% 50%)', duration: 1.3, ease: 'power3.inOut' }, '-=1.4')
     .add(() => { $('#curtain').remove();
       /* brilho passa pelo vidro de tempos em tempos */
@@ -535,6 +573,11 @@ function animacoes() {
 (async function init() {
   items = await carregar();
   renderCols(); renderDestaques(); renderTabs(); renderGrid(false);
+  window.hayaAbrir = abrir;
+  window.hayaVitrine = items.filter(p => fotoSegura(p.foto)).sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0)).slice(0, 10)
+    .map(p => ({ id: p.id, nome: p.nome, marca: p.marca || p.categoria, notas: [p.notas_topo, p.notas_coracao].filter(Boolean).join(' · '), foto: fotoSegura(p.foto) }));
+  dispatchEvent(new Event('haya:vitrine'));
+  heroFotos();
   animacoes();
 })();
 </script>

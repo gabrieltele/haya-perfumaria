@@ -49,5 +49,5 @@ Regras: anime só `transform`/`opacity` (e `clip-path` quando precisar); `will-c
 
 Anote aqui o que já foi feito para não repetir a mesma fórmula no próximo cliente.
 
-- **Haya Perfumaria**: preto + dourado da logo; HAYA gigante vazado atrás do produto; nicho em arco iluminado com pedestal; frasco 3D de vidro (Three.js); carrossel em arcos.
+- **Haya Perfumaria**: preto + dourado da logo; HAYA gigante vazado atrás do produto; nicho em arco iluminado com pedestal e fotos reais se revezando; vitrine 3D em roda (Three.js) com as fotos reais em arcos, reflexo no chão e névoa creme. O cliente **não gostou** do frasco 3D desenhado à mão: prefere produto real. Para 3D de produto, só com modelo `.glb` do produto de verdade.
 - **Casinha do Garimpo**: papel, colagem, cinema mudo, gatinhos em SVG, mão articulada no scroll.
