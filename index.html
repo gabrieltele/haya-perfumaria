@@ -62,6 +62,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .st.on{visibility:visible}
 .st h1,.st h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.7rem,4.7vw,5.3rem);line-height:.98;letter-spacing:-.01em;max-width:9.5em}
 .st p{margin:22px 0 30px;max-width:30em;color:rgba(243,235,219,.74);font-size:1.02rem;line-height:1.65}
+.trust{display:flex;align-items:center;gap:14px;align-self:flex-start;margin:-6px 0 30px;padding:10px 18px 10px 10px;border:1px solid rgba(217,179,101,.35);background:rgba(255,255,255,.03);transition:border-color .4s,background .4s}
+.trust:hover{border-color:var(--gold-l);background:rgba(217,179,101,.08)}
+.trust-ring{position:relative;width:52px;height:52px;border-radius:50%;padding:3px;background:conic-gradient(from 200deg,var(--gold),#f2d48f,var(--gold),#7a5a1e,var(--gold))}
+.trust-ring img{width:100%;height:100%;border-radius:50%;border:2px solid #000;display:block}
+.trust-ring::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(217,179,101,.5);animation:ring 2.6s var(--e-out) infinite}
+@keyframes ring{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.25);opacity:0}}
+.trust-txt{display:flex;flex-direction:column;line-height:1.2}
+.trust-n{font-family:var(--serif);font-size:1.45rem;color:var(--cream)}
+.trust-n b{font-weight:600;color:var(--gold-l);font-variant-numeric:tabular-nums}
+.trust small{font-size:.78rem;color:rgba(243,235,219,.65);display:flex;align-items:center;gap:5px}
+.trust .vf{width:14px;height:14px;color:#4a9bf0}
+.trust-go{margin-left:10px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;color:var(--gold-l);border-bottom:1px solid currentColor;padding-bottom:2px}
+@media(max-width:860px){.trust{order:-1;margin:0;align-self:stretch}.trust-go{margin-left:auto}}
 .hero-nav{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .hn{text-align:left;font-size:.8rem;color:rgba(243,235,219,.5);padding-top:14px;position:relative;transition:color .4s}
 .hn::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(243,235,219,.2)}
@@ -204,19 +217,42 @@ dialog::backdrop{background:rgba(11,11,11,.78);backdrop-filter:blur(4px)}
 .car-bar i{display:block;height:100%;background:var(--ink);transform-origin:left;transform:scaleX(0)}
 
 /* visite */
-.visit{background:var(--ink);color:var(--cream);overflow:hidden}
-.visit .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
-.visit h2{font-size:clamp(2.4rem,6vw,5rem)}
-.visit h2 em{color:var(--gold-l)}
-.ticket{border:1px solid var(--gold);padding:clamp(24px,4vw,44px);position:relative;background:rgba(255,255,255,.03)}
-.ticket::before{content:"";position:absolute;inset:7px;border:1px solid rgba(217,179,101,.25);pointer-events:none}
-.ticket dl{display:grid;gap:22px}
-.ticket dt{font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-l);margin-bottom:4px}
-.ticket dd{font-family:var(--serif);font-size:1.5rem;line-height:1.25}
-.ticket .row{display:flex;justify-content:space-between;gap:14px;border-bottom:1px dashed rgba(217,179,101,.3);padding:5px 0;font-family:var(--serif);font-size:1.4rem}
-.ticket .row span:last-child{color:var(--gold-l)}
-.ticket .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-@media(max-width:860px){.visit .wrap{grid-template-columns:1fr}}
+.visit{background:#000;color:var(--cream);overflow:hidden}
+.visit .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.visit h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,5.6vw,4.8rem);line-height:1}
+.visit .lead{margin:18px 0 26px;max-width:28em;color:rgba(243,235,219,.72)}
+.status{display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border:1px solid rgba(217,179,101,.4);font-size:.9rem;margin-bottom:26px}
+.status i{width:9px;height:9px;border-radius:50%;background:#6fcf7a;box-shadow:0 0 0 0 rgba(111,207,122,.6);animation:pulse 2s infinite}
+.status.fechado i{background:#c9603f;animation:none}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(111,207,122,0)}100%{box-shadow:0 0 0 0 rgba(111,207,122,0)}}
+.addr{font-family:var(--serif);font-size:1.5rem;line-height:1.3;margin-bottom:22px}
+.addr small{display:block;font-family:var(--sans);font-size:.85rem;color:rgba(243,235,219,.6);margin-top:4px}
+.hours{width:100%;max-width:440px;border-collapse:collapse;margin-bottom:28px;font-size:.95rem}
+.hours td{padding:9px 0;border-bottom:1px solid rgba(217,179,101,.18)}
+.hours td:last-child{text-align:right;color:var(--gold-l);font-variant-numeric:tabular-nums}
+.hours tr.hoje td{color:var(--cream);font-weight:500}
+.hours tr.hoje td:first-child::after{content:"hoje";margin-left:10px;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#000;background:var(--gold-l);padding:2px 7px;vertical-align:2px}
+.visit .acts{display:flex;gap:10px;flex-wrap:wrap}
+.mapa{position:relative;display:block;aspect-ratio:6/5;border:1px solid rgba(217,179,101,.45);background:#0a0805;overflow:hidden;box-shadow:0 40px 80px -30px rgba(184,134,47,.35)}
+.mapa::before{content:"";position:absolute;inset:8px;border:1px solid rgba(217,179,101,.18);z-index:2;pointer-events:none}
+.mapa svg{width:100%;height:100%;display:block;transition:transform 1.2s var(--e-out)}
+.mapa:hover svg{transform:scale(1.04)}
+.mapa .rua{fill:none;stroke:rgba(243,235,219,.14);stroke-linecap:round}
+.mapa .rua.prin{stroke:rgba(217,179,101,.55)}
+.mapa .rota{fill:none;stroke:var(--gold-l);stroke-width:3;stroke-dasharray:2 9;stroke-linecap:round}
+.mapa .quadra{fill:rgba(243,235,219,.035)}
+.mapa .verde{fill:rgba(111,140,80,.18)}
+.mapa text{font-family:var(--sans);fill:rgba(243,235,219,.5);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.mapa text.prin{fill:var(--gold-l);font-size:12px}
+.pin-ring{fill:none;stroke:var(--gold-l);transform-box:fill-box;transform-origin:center;animation:pinr 2.4s var(--e-out) infinite}
+.pin-ring.b{animation-delay:1.2s}
+@keyframes pinr{0%{transform:scale(.3);opacity:1}100%{transform:scale(2.4);opacity:0}}
+.map-tag{position:absolute;z-index:3;left:50%;top:22%;transform:translateX(-50%);background:var(--cream);color:#000;padding:10px 16px;font-family:var(--serif);font-size:1.15rem;white-space:nowrap;box-shadow:0 14px 30px rgba(0,0,0,.4)}
+.map-tag small{display:block;font-family:var(--sans);font-size:.72rem;color:#5a4a33}
+.map-tag::after{content:"";position:absolute;left:50%;bottom:-7px;width:14px;height:14px;background:var(--cream);transform:translateX(-50%) rotate(45deg)}
+.map-cta{position:absolute;z-index:3;right:16px;bottom:16px;background:var(--gold);color:#000;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:10px 14px}
+.map-note{position:absolute;z-index:3;left:20px;top:16px;font-size:.7rem;color:rgba(243,235,219,.4)}
+@media(max-width:860px){.visit .wrap{grid-template-columns:1fr}.mapa{aspect-ratio:1/1}.map-tag{top:16%}}
 footer{background:#050505;color:rgba(243,235,219,.7);padding:46px 0;font-size:.82rem;text-align:center}
 footer .brand{justify-content:center;color:var(--cream);margin-bottom:14px}
 footer a{color:var(--gold-l);border-bottom:1px solid rgba(217,179,101,.4)}
@@ -237,13 +273,13 @@ footer a{color:var(--gold-l);border-bottom:1px solid rgba(217,179,101,.4)}
 
 <header class="top" id="top">
   <a class="brand" href="#inicio" aria-label="Haya Perfumaria — início"><img src="img/logo.jpg" alt="" width="42" height="42"><span>Haya</span></a>
-  <nav class="nav" aria-label="Principal"><a href="#colecoes">Coleções</a><a href="#catalogo">Perfumes</a><a href="#curadoria">Curadoria</a><a href="#visite">Visite</a></nav>
+  <nav class="nav" aria-label="Principal"><a href="#catalogo">Perfumes</a><a href="#destaques">Destaques</a><a href="#colecoes">Coleções</a><a href="#visite">Visite</a></nav>
   <a class="btn" data-pedir-geral href="#visite">Fale com a Haya</a>
   <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">MENU</button>
 </header>
 <div class="sheet" id="sheet" role="dialog" aria-label="Menu">
   <button class="x" id="sheetX" aria-label="Fechar menu">✕</button>
-  <a href="#colecoes">Coleções</a><a href="#catalogo">Perfumes</a><a href="#curadoria">Curadoria</a><a href="#visite">Visite</a>
+  <a href="#catalogo">Perfumes</a><a href="#destaques">Destaques</a><a href="#colecoes">Coleções</a><a href="#visite">Visite</a>
 </div>
 
 <main id="inicio">
@@ -256,6 +292,11 @@ footer a{color:var(--gold-l);border-bottom:1px solid rgba(217,179,101,.4)}
     <div class="st" data-i="2" aria-hidden="true"><h2>O raro mora no nicho</h2><p>Árabes e perfumaria nicho para quem quer um cheiro que ninguém mais tem.</p><button class="btn" data-g="Árabes">Ver árabes</button></div>
     <div class="st" data-i="3" aria-hidden="true"><h2>Âmbar, baunilha e madeira</h2><p>Fragrâncias quentes que acompanham o dia inteiro e ficam na memória.</p><button class="btn" data-g="Unissex">Ver unissex</button></div>
     </div>
+    <a class="trust" href="https://www.instagram.com/hayaperfumaria/" target="_blank" rel="noopener" aria-label="Instagram da Haya: 1.408 seguidores">
+      <span class="trust-ring"><img src="img/logo.jpg" alt="" width="46" height="46"></span>
+      <span class="trust-txt"><span class="trust-n"><b id="igCount">1.408</b> seguidores</span><small>@hayaperfumaria <svg class="vf" viewBox="0 0 24 24" aria-label="perfil verificado"><path d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3L2.6 15.8l1-3-1-3 2.6-1.9 1-3 3.2.1z" fill="currentColor"/><path d="M8 12.2l2.6 2.6L16.2 9" fill="none" stroke="#000" stroke-width="2"/></svg></small></span>
+      <span class="trust-go" aria-hidden="true">Seguir</span>
+    </a>
     <nav class="hero-nav" aria-label="Escolher campanha"><button class="hn" data-go="0" aria-current="true"><i></i>Haya</button><button class="hn" data-go="1" aria-current="false"><i></i>Femininos</button><button class="hn" data-go="2" aria-current="false"><i></i>Nicho e árabes</button><button class="hn" data-go="3" aria-current="false"><i></i>Amadeirados</button></nav>
   </div>
   <div class="hero-media" id="heroMedia">
@@ -270,9 +311,11 @@ footer a{color:var(--gold-l);border-bottom:1px solid rgba(217,179,101,.4)}
 
 <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marq"></div></div>
 
-<section id="colecoes" class="pad"><div class="wrap">
-  <div class="head" data-reveal><p class="eyebrow">Escolha o seu mundo</p><h2 class="display">As <em>coleções</em> da casa</h2></div>
-  <div class="cols" id="cols"></div>
+<section id="catalogo" class="pad"><div class="wrap">
+  <div class="head" data-reveal><p class="eyebrow">O acervo</p><h2 class="display">Escolha a sua <em>fragrância</em></h2></div>
+  <div class="tabs" id="tabs" role="group" aria-label="Filtrar por coleção"></div>
+  <div class="tools"><input class="search" id="busca" type="search" placeholder="Buscar por nome, marca ou nota…" aria-label="Buscar perfume" maxlength="60"><span class="count" id="count" aria-live="polite"></span></div>
+  <div class="grid" id="grid"></div>
 </div></section>
 
 <section id="destaques" class="feat pad">
@@ -286,39 +329,66 @@ footer a{color:var(--gold-l);border-bottom:1px solid rgba(217,179,101,.4)}
   <div class="wrap"><div class="car-bar" aria-hidden="true"><i id="carBar"></i></div></div>
 </section>
 
+<section id="colecoes" class="pad"><div class="wrap">
+  <div class="head" data-reveal><p class="eyebrow">Escolha o seu mundo</p><h2 class="display">As <em>coleções</em> da casa</h2></div>
+  <div class="cols" id="cols"></div>
+</div></section>
+
 <section id="curadoria" class="story pad"><div class="wrap">
   <p class="eyebrow">Curadoria Haya</p>
   <p class="big" id="bigText">Não vendemos só perfume. Escolhemos fragrâncias com assinatura, das grandes casas internacionais aos árabes que conquistaram o Brasil, para que cada pessoa encontre a sua.</p>
   <div class="stats">
     <div><b data-count="5">0</b><small>coleções</small></div>
-    <div><b data-count="6">0</b><small>dias por semana</small></div>
-    <div><b data-count="1408">0</b><small>seguidores no Instagram</small></div>
+    <div><b data-count="7">0</b><small>dias por semana</small></div>
+    <div><b data-count="13">0</b><small>horas abertos de segunda a sábado</small></div>
   </div>
-</div></section>
-
-<section id="catalogo" class="pad"><div class="wrap">
-  <div class="head" data-reveal><p class="eyebrow">O acervo</p><h2 class="display">Escolha a sua <em>fragrância</em></h2></div>
-  <div class="tabs" id="tabs" role="group" aria-label="Filtrar por coleção"></div>
-  <div class="tools"><input class="search" id="busca" type="search" placeholder="Buscar por nome, marca ou nota…" aria-label="Buscar perfume" maxlength="60"><span class="count" id="count" aria-live="polite"></span></div>
-  <div class="grid" id="grid"></div>
 </div></section>
 
 <section id="visite" class="visit pad"><div class="wrap">
-  <div data-reveal>
-    <p class="eyebrow">Venha sentir de perto</p>
-    <h2 class="display">Visite a <em>Haya</em></h2>
-    <p style="margin-top:20px;max-width:440px;color:rgba(243,235,219,.75)">Teste as fragrâncias na pele, converse com a gente e leve a sua. Estamos na Galeria Coop, em Tatuí.</p>
-  </div>
-  <div class="ticket" data-reveal>
-    <dl>
-      <div><dt>Endereço</dt><dd>Galeria Coop<br>Rua Onze de Agosto, 3043 — Tatuí, SP</dd></div>
-      <div><dt>Horário</dt><dd><div class="row"><span>Segunda a sábado</span><span>9h às 22h</span></div><div class="row"><span>Domingo</span><span>9h às 16h</span></div></dd></div>
-    </dl>
+  <div class="visit-info" data-reveal>
+    <h2 id="visitTitle">Venha sentir na pele</h2>
+    <p class="lead">Na loja você testa as fragrâncias, conversa com a gente e sai com a sua.</p>
+    <p class="status" id="status" aria-live="polite"><i></i><span>Veja o horário abaixo</span></p>
+    <p class="addr">Galeria Coop, Rua Onze de Agosto, 3043<small>Centro de Tatuí, SP</small></p>
+    <table class="hours" aria-label="Horário de funcionamento"><tbody>
+      <tr data-dias="1,2,3,4,5,6"><td>Segunda a sábado</td><td>9h às 22h</td></tr>
+      <tr data-dias="0"><td>Domingo</td><td>9h às 16h</td></tr>
+    </tbody></table>
     <div class="acts">
-      <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Galeria+Coop+Onze+de+Agosto+3043+Tatui+SP">Abrir no mapa</a>
-      <a class="btn ghost" target="_blank" rel="noopener" href="https://www.instagram.com/hayaperfumaria/">@hayaperfumaria</a>
+      <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Galeria+Coop+Rua+Onze+de+Agosto+3043+Tatu%C3%AD+SP">Como chegar</a>
+      <a class="btn ghost" target="_blank" rel="noopener" href="https://waze.com/ul?q=Galeria%20Coop%20Rua%20Onze%20de%20Agosto%203043%20Tatu%C3%AD&amp;navigate=yes">Abrir no Waze</a>
     </div>
   </div>
+  <a class="mapa" id="mapa" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Galeria+Coop+Rua+Onze+de+Agosto+3043+Tatu%C3%AD+SP" aria-label="Abrir a localização da Haya no Google Maps">
+    <svg viewBox="0 0 600 500" aria-hidden="true">
+      <g class="quadras">
+        <rect class="quadra" x="40" y="40" width="150" height="120"/><rect class="quadra" x="225" y="40" width="130" height="120"/><rect class="quadra" x="390" y="40" width="170" height="120"/>
+        <rect class="quadra" x="40" y="300" width="150" height="160"/><rect class="quadra" x="225" y="300" width="130" height="160"/><rect class="quadra" x="390" y="300" width="170" height="160"/>
+        <rect class="quadra" x="40" y="196" width="150" height="70"/><rect class="quadra" x="390" y="196" width="170" height="70"/>
+        <path class="verde" d="M228 196h124v70H228z"/>
+      </g>
+      <g class="ruas">
+        <path class="rua" stroke-width="10" d="M0 178H600"/><path class="rua" stroke-width="10" d="M0 283H600"/>
+        <path class="rua" stroke-width="8" d="M208 0V500"/><path class="rua" stroke-width="8" d="M372 0V500"/>
+        <path class="rua" stroke-width="5" d="M20 0V500M580 0V500M0 22H600M0 480H600"/>
+        <path class="rua prin" id="ruaPrin" stroke-width="16" d="M-20 380 C 140 360, 220 260, 300 240 S 470 150, 620 120"/>
+      </g>
+      <text class="prin" transform="rotate(-17 470 150)" x="410" y="132">Rua Onze de Agosto</text>
+      <text x="252" y="236">Praça</text>
+      <text x="60" y="171">Centro</text>
+      <path class="rota" id="rota" d="M30 470 L30 283 L208 283 L208 255 L300 240"/>
+      <g id="pin" transform="translate(300 240)">
+        <circle class="pin-ring" r="20" stroke-width="1.5"/><circle class="pin-ring b" r="20" stroke-width="1.5"/>
+        <path d="M0 0 C -6 -10,-18 -18,-18 -32 A18 18 0 0 1 18 -32 C 18 -18, 6 -10, 0 0Z" fill="#B8862F" stroke="#0a0805" stroke-width="2"/>
+        <circle cy="-32" r="11" fill="#0a0805"/>
+        <path d="M-4 -38V-26M4 -38V-26M-4 -31C-1 -30 1 -34 4 -33" stroke="#D9B365" stroke-width="1.4" fill="none"/>
+      </g>
+      <g transform="translate(548 60)" opacity=".7"><circle r="22" fill="none" stroke="rgba(217,179,101,.5)"/><path d="M0 -16L5 0L0 16L-5 0Z" fill="none" stroke="#D9B365"/><path d="M0 -16L5 0H-5Z" fill="#D9B365"/><text y="-27" x="-4" style="font-size:10px;fill:#D9B365">N</text></g>
+    </svg>
+    <span class="map-tag" id="mapTag">Haya Perfumaria<small>Galeria Coop, nº 3043</small></span>
+    <span class="map-cta">Abrir no Google Maps</span>
+    <span class="map-note">Mapa ilustrativo</span>
+  </a>
 </div></section>
 </main>
 
@@ -529,6 +599,17 @@ function heroSlides() {
   zoom(fotos[0]); progresso();
 }
 
+/* ——— Visite: aberto agora? (horário de Brasília) ——— */
+function statusLoja() {
+  const partes = Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Sao_Paulo', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date()).map(p => [p.type, p.value]));
+  const dia = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(partes.weekday), h = (+partes.hour % 24) + (+partes.minute) / 60;
+  const fecha = d => d === 0 ? 16 : 22;
+  document.querySelectorAll('.hours tr').forEach(tr => tr.classList.toggle('hoje', tr.dataset.dias.split(',').includes(String(dia))));
+  const st = $('#status'), txt = st.querySelector('span');
+  if (h >= 9 && h < fecha(dia)) { st.classList.remove('fechado'); txt.textContent = `Aberto agora · fecha às ${fecha(dia)}h`; }
+  else { st.classList.add('fechado'); txt.textContent = h < 9 ? 'Fechado agora · abre hoje às 9h' : 'Fechado agora · abre amanhã às 9h'; }
+}
+
 /* ——— animações ——— */
 function animacoes() {
   const marq = $('#marq'), frases = ['Perfumes importados', 'Curadoria de fragrâncias', 'Cada fragrância guarda uma história', 'Galeria Coop · Tatuí', 'Cosméticos'];
@@ -561,6 +642,8 @@ function animacoes() {
     .from('.hero-mark span', { yPercent: 100, opacity: 0, duration: 1.4, stagger: .09, ease: 'expo.out' }, '-=2')
     .from(temSplit ? SplitText.create('.st.on h1', { type: 'words', mask: 'words' }).words : '.st.on h1', { yPercent: 110, duration: 1.1, stagger: .06, ease: 'expo.out' }, '-=1.6')
     .from('.st.on p, .st.on .btn, .hero-brand, .hero-nav, .hero-side', { opacity: 0, y: 18, duration: .9, stagger: .08 }, '-=.9')
+    .from('.trust', { opacity: 0, y: 18, duration: .9 }, '-=.7')
+    .add(() => { const o = { v: 0 }; gsap.to(o, { v: 1408, duration: 2.2, ease: 'power3.out', onUpdate: () => $('#igCount').textContent = Math.round(o.v).toLocaleString('pt-BR') }); }, '<')
     .add(() => { $('#curtain').remove(); heroSlides(); });
   /* ao rolar: a foto desce mais devagar que a página e o letreiro sobe */
   gsap.to('#heroMedia', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
@@ -571,6 +654,15 @@ function animacoes() {
   /* texto da curadoria acende palavra por palavra */
   const big = $('#bigText'); big.innerHTML = big.textContent.split(' ').map(w => `<span>${esc(w)}</span>`).join(' ');
   gsap.to('#bigText span', { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: '#bigText', start: 'top 80%', end: 'bottom 45%', scrub: true } });
+  /* mapa: ruas se desenham, a rota corre até a loja, o pino cai e a etiqueta aparece */
+  const tlm = gsap.timeline({ scrollTrigger: { trigger: '#mapa', start: 'top 75%', once: true } });
+  tlm.from('#mapa .quadra, #mapa .verde', { opacity: 0, duration: .8, stagger: .03 })
+     .from('#mapa .rua', { opacity: 0, scaleX: .6, transformOrigin: 'center', duration: .9, stagger: .05, ease: 'power3.out' }, '<.1')
+     .fromTo('#rota', { strokeDashoffset: 400 }, { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut' }, '-=.4')
+     .from('#pin', { y: -60, opacity: 0, duration: .9, ease: 'bounce.out' }, '-=.5')
+     .from('#mapTag', { opacity: 0, y: 14, duration: .6 }, '-=.2')
+     .from('#mapa text', { opacity: 0, duration: .8, stagger: .1 }, '<');
+  gsap.to('#rota', { strokeDashoffset: -22, duration: 1.2, ease: 'none', repeat: -1, delay: 3 });
   /* contadores */
   document.querySelectorAll('[data-count]').forEach(el => { const o = { v: 0 }, fim = +el.dataset.count; ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => gsap.to(o, { v: fim, duration: 1.8, ease: 'power2.out', onUpdate: () => el.textContent = Math.round(o.v).toLocaleString('pt-BR') }) }); });
   /* cartões da coleção se inclinam com o mouse */
@@ -585,6 +677,7 @@ function animacoes() {
   items = await carregar();
   renderCols(); renderDestaques(); renderTabs(); renderGrid(false);
   window.hayaAbrir = abrir;
+  statusLoja(); setInterval(statusLoja, 60000);
   window.hayaVitrine = items.filter(p => fotoSegura(p.foto)).sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0)).slice(0, 10)
     .map(p => ({ id: p.id, nome: p.nome, marca: p.marca || p.categoria, notas: [p.notas_topo, p.notas_coracao].filter(Boolean).join(' · '), foto: fotoSegura(p.foto) }));
   dispatchEvent(new Event('haya:vitrine'));
