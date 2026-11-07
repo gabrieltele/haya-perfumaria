@@ -8,7 +8,7 @@ Site e painel da Haya Perfumaria (Galeria Coop, Rua Onze de Agosto, 3043 — Tat
 - `supabase-config.js` — `url`, `anonKey` do Supabase e o número do WhatsApp.
 - `vercel.json` — cabeçalhos de segurança (CSP, HSTS, sem iframe) e `/admin` sem indexação.
 
-Visual inspirado em perfumarias clássicas (Granado, Jo Malone, Penhaligon's): papel creme, preto e o dourado da logo, Cormorant Garamond + Jost. Animações com GSAP 3.12.5 e Lenis 1.1.13 (CDN), respeitando `prefers-reduced-motion`.
+Visual inspirado em perfumarias clássicas (Granado, Jo Malone, Penhaligon's): papel creme, preto e o dourado da logo, Cormorant Garamond + Jost. Animações com GSAP 3.13.0 (+ ScrollTrigger e SplitText), Lenis 1.1.13 e Three.js 0.170.0 (frasco 3D do início, em `js/frasco3d.js`), todos por CDN e respeitando `prefers-reduced-motion`. Sem WebGL, o início mostra a foto do perfume.
 
 ## Colocar no ar
 1. Crie um projeto no [Supabase](https://supabase.com) e rode `supabase/setup.sql` no SQL Editor.
